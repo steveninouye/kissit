@@ -1,0 +1,52 @@
+{
+  "name": "kissit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/steveninouye/kissit.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/steveninouye/kissit/issues"
+  },
+  "homepage": "https://github.com/steveninouye/kissit#readme",
+  "dependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "mongoose": "^5.4.4",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-redux": "^6.0.0",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2",
+    "rimraf": "^2.6.3",
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.18.9",
+    "redux-logger": "^3.0.6",
+    "webpack-dev-server": "^3.1.14"
+  }
+}
