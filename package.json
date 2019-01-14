@@ -13,7 +13,16 @@
     ]
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server/dist/app.js",
+    "build:server": "babel ./server/src -d ./server/dist",
+    "build:client": "webpack -p",
+    "clean": "rimraf ./client/dist && rimraf ./server/dist",
+    "build": "npm run build:server && npm run build:client",
+    "dev": "npm run build:server && concurrently -r -k \"npm run build:dev-server\" \"npm run start:dev-server\" \"npm run client:dev-server\" ",
+    "client:dev-server": "webpack-dev-server --mode=development",
+    "build:dev-server": "babel ./server/src -w -d ./server/dist",
+    "start:dev-server": "nodemon ./server/dist/app.js",
+    "heroku-postbuild": "npm install && npm run build"
   },
   "repository": {
     "type": "git",
