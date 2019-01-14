@@ -10,28 +10,28 @@ import { resolve } from 'path';
 // import apiRoutes from './api_routes';
 
 const app = express();
-mongoose
-  .connect(
-    dbUri,
-    { useNewUrlParser: true, useCreateIndex: true }
-  )
-  .then(() => console.log('Connected to Mongo DB'))
-  .catch((err) => console.log(`DB Error: ${err}`));
+// mongoose
+//   .connect(
+//     dbUri,
+//     { useNewUrlParser: true, useCreateIndex: true }
+//   )
+//   .then(() => console.log('Connected to Mongo DB'))
+//   .catch((err) => console.log(`DB Error: ${err}`));
 
-const clientPath =
-  process.env.NODE_ENV === 'production'
-    ? resolve(__dirname, '../../client/dist')
-    : resolve(__dirname, '../../client/src');
+// const clientPath =
+//   process.env.NODE_ENV === 'production'
+//     ? resolve(__dirname, '../../client/dist')
+//     : resolve(__dirname, '../../client/src');
 
-app.use(morgan('combined'));
-app.use(bp.urlencoded({ extended: false }));
-app.use(bp.json());
-app.use(passport.initialize());
-app.use(express.static(clientPath));
+// app.use(morgan('combined'));
+// app.use(bp.urlencoded({ extended: false }));
+// app.use(bp.json());
+// app.use(passport.initialize());
+// app.use(express.static(clientPath));
 
-passportConfig(passport);
+// passportConfig(passport);
 
-app.use('/api', apiRoutes);
+// app.use('/api', apiRoutes);
 
 app.get('*', (req, res) => {
   res.sendFile(resolve(clientPath, 'index.html'));

@@ -5,13 +5,11 @@ const Router = () => {
   return (
     <>
       <Switch>
-        {/* <Route exact path="/" component={LandingPage} />
-        <Route path="/plans/:planId" component={PlanShowContainer} />
-        <Route path="/city-not-found" component={NoResultFound} />
-
-        <Route path="/schedule" component={ItinerarySchedule} />
-        <Route path="/map/:planId" component={PlanMapContainer} />
-        <AuthRoute path="/plans" component={PlansIndex} /> */}
+        <Route path="/shop" component={Shop} />
+        <Route path="/preview" component={Preview} />
+        <Route path="/search" component={Search} />
+        <Route path="/" exact component={Home} />
+        <Route path="*" component={NotFound} />
       </Switch>
     </>
   );
