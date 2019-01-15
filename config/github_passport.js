@@ -1,9 +1,6 @@
 import passport from 'passport';
 import { Strategy as GitHubStrategy } from 'passport-github';
-
-const request = require('request');
-const rp = require('request-promise');
-const keys = require('./config/keys');
+import rp from 'request-promise'
 
 import { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } from './keys';
 
