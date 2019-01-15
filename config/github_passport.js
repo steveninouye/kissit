@@ -37,18 +37,24 @@ passport.use(
       };
 
       let options = { upsert: true, new: true, setDefaultsOnInsert: true };
-      User.findOneAndUpdate({ id }, userInfo, options, (err, result) => {
-        const { username } = result;
-        const userFollowingUri = githubApiRequest(
-          `https://api.github.com/users/${username}/following`
-        );
-        const numPages = Math.ceil(numFavorites / 30);
-        const favRequestPromises = [];
-        for (i = 1; i <= numPages; i++) {
-          userFollowingUri.qs.page = i;
-          favRequestPromises.push(rp(userFollowingUri));
-        }
-      });
+      User.findOneAndUpdate({ id }, userInfo, options)
+        .then(({ username, numFollowing }) => {
+          const numPages = Math.ceil(numFollowing / 30);
+          const userFollowingPromises = [];
+          for (i = 1; i <= numPages; i++) {
+            const userFollowingUri = githubApiRequest(
+              `https://api.github.com/users/${username}/following`
+            );
+            userFollowingUri.qs.page = i;
+            userFollowingPromises.push(rp(userFollowingUri));
+          }
+          return Promise.all(
+            userFollowingPromises.map((promise) => promise.catch((err) => err))
+          );
+        })
+        .then((allUsersFollowing) => {
+          allUsersFollowing = allUsersFollowing.reduce((a, c) => a.concat(c));
+        });
 
       knex('users')
         .select()
