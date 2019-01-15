@@ -1,31 +1,33 @@
 import mongoose, { Schema } from 'mongoose';
+// const mongoose = require('mongoose');
+// const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
   username: {
     type: String,
     required: true
   },
-  url: {
+  githubApiUrl: {
     type: String,
     required: true
   },
-  html_url: {
+  githubUrl: {
     type: String,
     required: true
   },
-  avatar_url: {
+  avatarUrl: {
     type: String,
     required: true
   },
-  followers: {
+  numFollowers: {
     type: Number,
     required: true
   },
-  following: {
+  numFollowing: {
     type: Number,
     required: true
   },
-  public_repos: {
+  numRepos: {
     type: Number,
     required: true
   }
@@ -33,3 +35,4 @@ const UserSchema = new Schema({
 
 const User = mongoose.model('users', UserSchema);
 export default User;
+// module.exports = User;

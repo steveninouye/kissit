@@ -3,6 +3,7 @@ import { Strategy as GitHubStrategy } from 'passport-github';
 import rp from 'request-promise';
 
 import { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } from './keys';
+import { githubApiRequest } from '../server/src/utils/uri_utils';
 import User from '../server/src/models';
 
 passport.serializeUser((user, done) => {
@@ -24,18 +25,30 @@ passport.use(
     },
     (accessToken, refreshToken, profile, done) => {
       console.log('passport authenticated: ', profile);
-      const { username } = profile;
-      const {
-        url,
-        html_url,
-        public_repos,
-        followers,
-        following,
-        avatar_url
-      } = profile._json;
-      // check if user already exists in our own db
-      // already have this user
-      // console.log('user is: ', profile);
+      const userInfo = {
+        id: profile.id,
+        username: profile.username,
+        githubApiUrl: profile._json.url,
+        githubUrl: profile._json.html_url,
+        numRepos: profile._json.public_repos,
+        numFollowing: profile._json.following,
+        numFollowers: profile._json.followers,
+        avatarUrl: profile._json.avatar_url
+      };
+
+      let options = { upsert: true, new: true, setDefaultsOnInsert: true };
+      User.findOneAndUpdate({ id }, userInfo, options, (err, result) => {
+        const { username } = result;
+        const userFollowingUri = githubApiRequest(
+          `https://api.github.com/users/${username}/following`
+        );
+        const numPages = Math.ceil(numFavorites / 30);
+        const favRequestPromises = [];
+        for (i = 1; i <= numPages; i++) {
+          userFollowingUri.qs.page = i;
+          favRequestPromises.push(rp(userFollowingUri));
+        }
+      });
 
       knex('users')
         .select()
