@@ -7,7 +7,7 @@ import { resolve } from 'path';
 
 // import passportConfig from './config/passport';
 // import { dbUri } from './config/keys';
-// import apiRoutes from './api_routes';
+import api from './api_routes';
 
 const app = express();
 // mongoose
@@ -31,14 +31,15 @@ const app = express();
 
 // passportConfig(passport);
 
-// app.use('/api', apiRoutes);
+app.use('/api', api);
 
 app.get('*', (req, res) => {
   res.sendFile(resolve(clientPath, 'index.html'));
 });
 
 const PORT = process.env.PORT || 8080;
+const envMode = process.env.NODE_ENV || 'development';
 app.listen(PORT, () => {
-  console.log(`you are running in ${process.env.NODE_ENV || 'development'}`);
+  console.log(`you are running in ${envMode}`);
   console.log(`Server listening on port ${PORT}`);
 });
