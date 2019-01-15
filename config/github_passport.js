@@ -1,12 +1,11 @@
-const passport = require('passport');
-const knex = require('./knex/knex');
-const GitHubStrategy = require('passport-github').Strategy;
+import passport from 'passport';
+import { Strategy as GitHubStrategy } from 'passport-github';
+
 const request = require('request');
 const rp = require('request-promise');
 const keys = require('./config/keys');
 
-const clientId = process.env.GITHUB_CLIENT_ID;
-const clientSecret = process.env.GITHUB_CLIENT_SECRET;
+import { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } from './keys';
 
 passport.serializeUser((user, done) => {
   console.log('Serialize: ', user);
@@ -15,15 +14,14 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((user, done) => {
   console.log('Deserialize: ', user);
-  // done(null, user);
+  done(null, user);
 });
 
 passport.use(
   new GitHubStrategy(
     {
-      // options for google strategy
-      clientID: clientId,
-      clientSecret: clientSecret,
+      clientID: GITHUB_CLIENT_ID,
+      clientSecret: GITHUB_CLIENT_SECRET,
       callbackURL: '/auth/github/redirect'
     },
     (accessToken, refreshToken, profile, done) => {

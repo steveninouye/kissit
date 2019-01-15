@@ -1,16 +1,17 @@
-import express from 'express';
+import { Router } from 'express';
 
 import { getCodeResultsOfUsers } from '../utils/github_api_utils';
 
-const code = express.Router();
+const code = Router();
 
 code.post('/search', (req, res) => {
-  const { searchInput, language } = JSON.parse(req.body);
+  const { searchInput, language } = req.body;
   const user = req.user ? req.user.username : 'steveninouye';
-
-  getCodeResultsOfUsers([user], searchInput, language, res).then((fileJson) => {
-    res.send(fileJson);
-  });
+  getCodeResultsOfUsers([user], [searchInput], language, {}).then(
+    (response) => {
+      res.send(response);
+    }
+  );
 });
 
 // router.post('/db/search', (req, res) => {
