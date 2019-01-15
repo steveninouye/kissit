@@ -31,14 +31,16 @@ passport.use(
         githubApiUrl: profile._json.url,
         githubUrl: profile._json.html_url,
         numRepos: profile._json.public_repos,
-        numFollowing: profile._json.following,
         numFollowers: profile._json.followers,
         avatarUrl: profile._json.avatar_url
       };
-      let allFollowingUsersUsernames;
+      let numFollowing = profile._json.following;
+      let allFollowingUsersUsernames, currentUser;
       let options = { upsert: true, new: true, setDefaultsOnInsert: true };
       User.findOneAndUpdate({ id }, userInfo, options)
-        .then(({ username, numFollowing }) => {
+        .then((user) => {
+          currentUser = user;
+          const { username } = currentUser;
           const numPages = Math.ceil(numFollowing / 30);
           const userFollowingPromises = [];
           for (i = 1; i <= numPages; i++) {
@@ -48,6 +50,7 @@ passport.use(
             userFollowingUri.qs.page = i;
             userFollowingPromises.push(rp(userFollowingUri));
           }
+          done(null, user);
           return Promise.all(
             userFollowingPromises.map((promise) => promise.catch((err) => err))
           );
@@ -60,7 +63,14 @@ passport.use(
           return User.find({ useranme: { $in: allFollowingUsersUsernames } });
         })
         .then((usersInDb) => {
-          allFollowingUsersUsernames
+          const dbUserUsernames = usersInDb.map((user) => user.username);
+          allFollowingUsersUsernames.forEach((username) => {
+            if (dbUserUsernames.includes(username)) {
+              // add user to logged in user's users that he/she is following
+            } else {
+              // add user to DB and add user to logg
+            }
+          });
         });
     }
   )

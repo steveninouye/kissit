@@ -23,10 +23,7 @@ const UserSchema = new Schema({
     type: Number,
     required: true
   },
-  numFollowing: {
-    type: Number,
-    required: true
-  },
+  usersFollowing: [{ type: Schema.Types.ObjectId, ref: 'users' }],
   numRepos: {
     type: Number,
     required: true
