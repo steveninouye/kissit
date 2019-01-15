@@ -13,20 +13,20 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  public_repos: {
+  avatar_url: {
     type: String,
     required: true
   },
   followers: {
-    type: String,
+    type: Number,
     required: true
   },
   following: {
-    type: String,
+    type: Number,
     required: true
   },
-  avatar_url: {
-    type: String,
+  public_repos: {
+    type: Number,
     required: true
   }
 });

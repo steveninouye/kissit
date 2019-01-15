@@ -1,8 +1,9 @@
 import passport from 'passport';
 import { Strategy as GitHubStrategy } from 'passport-github';
-import rp from 'request-promise'
+import rp from 'request-promise';
 
 import { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } from './keys';
+import User from '../server/src/models';
 
 passport.serializeUser((user, done) => {
   console.log('Serialize: ', user);
