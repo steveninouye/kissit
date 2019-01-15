@@ -53,7 +53,7 @@ module.exports = {
     contentBase: path.resolve(__dirname, 'client', 'dist'),
     port: 3000,
     compress: true,
-    open: true,
+    // open: true,
     stats: 'errors-only',
     historyApiFallback: true,
     proxy: [{ context: ['/'], target: 'http://localhost:8080' }]

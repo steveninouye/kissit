@@ -1,5 +1,7 @@
 import express from 'express';
 
+import code from './api/code';
+
 // import users from './api/users_routes';
 // import places from './api/places_routes';
 // import itineraries from './api/itineraries_routes';
@@ -7,7 +9,7 @@ import express from 'express';
 
 const api = express.Router();
 
-// api.use('/users', users);
+api.use('/code', code);
 // api.use('/places', places);
 // api.use('/google', google);
 // api.use('/itineraries', itineraries);
