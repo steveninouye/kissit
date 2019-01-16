@@ -26,7 +26,7 @@ passport.use(
     (accessToken, refreshToken, profile, done) => {
       console.log('passport authenticated: ', profile);
       const userInfo = {
-        id: profile.id,
+        githubId: profile.id,
         username: profile.username,
         githubApiUrl: profile._json.url,
         githubUrl: profile._json.html_url,
@@ -64,13 +64,41 @@ passport.use(
         })
         .then((usersInDb) => {
           const dbUserUsernames = usersInDb.map((user) => user.username);
+          const newUserPromises = [];
           allFollowingUsersUsernames.forEach((username) => {
             if (dbUserUsernames.includes(username)) {
               // add user to logged in user's users that he/she is following
             } else {
               // add user to DB and add user to logg
+              newUserPromises.push(
+                rp(githubApiRequest(`https://api.github.com/users/${username}`))
+              );
             }
           });
+          Promise.all(
+            newUserPromises.map((promise) => promise.catch((err) => err))
+          )
+            .then((users) => {
+              users = users.map((user) => ({
+                githubId: user.id,
+                username: user.login,
+                githubApiUrl: user.url,
+                githubUrl: user.html_url,
+                numRepos: user.public_repos,
+                numFollowers: user.followers,
+                avatarUrl: user.avatar_url
+              }));
+              return User.create(users);
+            })
+            .then((users) => {
+              User.update(
+                { username: currentUser.username },
+                {
+                  usersFollowing: { $each: users.map((user) => user._id) }
+                },
+                { upsert: true }
+              );
+            });
         });
     }
   )

@@ -3,6 +3,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
+  githubId: {
+    type: Number,
+    required: true
+  },
   username: {
     type: String,
     required: true
@@ -23,11 +27,11 @@ const UserSchema = new Schema({
     type: Number,
     required: true
   },
-  usersFollowing: [{ type: Schema.Types.ObjectId, ref: 'users' }],
   numRepos: {
     type: Number,
     required: true
-  }
+  },
+  usersFollowing: [{ type: Schema.Types.ObjectId, ref: 'users' }]
 });
 
 const User = mongoose.model('users', UserSchema);
