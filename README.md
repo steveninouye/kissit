@@ -1,3 +1,3 @@
 # Kiss I.T.
 
-[Project Proposal](docs/proposal.md)
+[Project Proposal](docs/Project-Proposal.md)
