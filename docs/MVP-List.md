@@ -20,15 +20,7 @@ Kiss IT is an search application which any user can search for code examples, do
 
    - Homepage is styled with links to sign up, log in, and log out
 
-3. Deployment (2 hours)
-
-   - Application is deployed on Heroku
-
-4. GitHub Repository README (4 hours)
-
-   - Application's GitHub repository has a presentable README describing the App and giving any instructions needed
-
-5. Selling Items (2 days)
+<!-- 5. Selling Items (2 days)
 
    - User is able to post items for sale including:
      - photos
@@ -77,4 +69,4 @@ Kiss IT is an search application which any user can search for code examples, do
 
 - User is able to change their information:
   - password
-  - location (address)
+  - location (address) -->
