@@ -2,7 +2,7 @@
 
 Kiss IT is an search application which any user can search for code examples, documentation, video tutorials, and Q&A forum threads. Its main purpose would be to give the public an easy to use tool to learn programming in any area.
 
-1. Authentication (2 days)
+1. Authentication (3 days)
 
    - User can log in via GitHub OAuth 2.0
      - User can refresh the page and stay logged in
@@ -16,9 +16,22 @@ Kiss IT is an search application which any user can search for code examples, do
      - User has the option to log in and sign up
      - Does not allow user to navigate to protected routes
 
-2. Homepage (1 day)
+2. Homepage (2 day)
 
    - Homepage is styled with links to sign up, log in, and log out
+
+3. Search (3 days)
+
+   - User can search for files containing search input
+     - By Language
+     - By File Extension
+   - User can search for files containing multiple search input
+   - User gets results back of files that contain strings of code with corresponding language
+   - Results are stored in the database
+
+4. Following User Search Results (5 days)
+   - Search results are displayed for files of users they are following
+   - Users can select which users files to view by checkbox input
 
 <!-- 5. Selling Items (2 days)
 
