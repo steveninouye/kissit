@@ -2,84 +2,55 @@
 
 Kiss IT is an search application which any user can search for code examples, documentation, video tutorials, and Q&A forum threads. Its main purpose would be to give the public an easy to use tool to learn programming in any area.
 
-1. Authentication (3 days)
+1.  Authentication (4 days)
 
-   - User can log in via GitHub OAuth 2.0
-     - User can refresh the page and stay logged in
-     - User has the option to log out
-     - User is unable to visit the log in page
-     - User is able to navigate to protected routes
-     - Application gives feedback to user upon log in submission
-       - log in errors
-       - log in confirmation
-   - Users can Log Out
-     - User has the option to log in and sign up
-     - Does not allow user to navigate to protected routes
+    - User can log in via GitHub OAuth 2.0
+      - User can refresh the page and stay logged in
+      - User has the option to log out
+      - User is unable to visit the log in page
+      - User is able to navigate to protected routes
+      - Application gives feedback to user upon log in submission
+        - log in errors
+        - log in confirmation
+    - Users can Log Out
+      - User has the option to log in and sign up
+      - Does not allow user to navigate to protected routes
 
-2. Homepage (2 day)
+2.  Homepage (4 day)
 
-   - Homepage is styled with links to sign up, log in, and log out
+    - Homepage is styled with links to sign up, log in, and log out
 
-3. Search (3 days)
+3.  Search Page (4 days)
 
-   - User can search for files containing search input
-     - By Language
-     - By File Extension
-   - User can search for files containing multiple search input
-   - User gets results back of files that contain strings of code with corresponding language
-   - Results are stored in the database
+    - Search page is built and styled
 
-4. Following User Search Results (5 days)
-   - Search results are displayed for files of users they are following
-   - Users can select which users files to view by checkbox input
+4.  Search (6 days)
 
-<!-- 5. Selling Items (2 days)
+    - User can search for files containing search input
+      - By Language
+      - By File Extension
+    - User can search for files containing multiple search input
+    - User gets results back of files that contain strings of code with corresponding language
+    - Results are stored in the database
 
-   - User is able to post items for sale including:
-     - photos
-     - title
-     - description
+5.  Storing following users in Database (4 days)
 
-6. Product Search (2 days)
+    - Upon log in, users that current user is following is saved to database
+    - Database stores relation of current user and users current user is following
 
-   - User is able to search for items and view relevant results based on title
-   - Only items that are currently for sale are listed
-   - Search results are displayed with:
-     - title
-     - picture
-     - current price
-     - time left
+6.  Following User Search Results (10 days)
 
-7. Product Details (1 day)
+    - Search results are displayed for files of users they are following
+    - Users can select which users files to view by checkbox input
 
-   - User is able to view details of items they select
-   - Page displays:
-     - title
-     - description
-     - current bid
-     - number of bids
-     - shipping cost
-     - owner username
-   - User is able to watch items \*bonus
+7.  User file likes
 
-8. Bidding (2 days)
+    - User can like a file according to their search
+    - Database stores relation of current user, file, and search input
 
-   - User is required to log in before submitting a valid bid
-   - User is able to place a maximum bid
-   - User is able to see the time remaining while on the bid form
-   - Application gives the user feedback on if their bid is winning
-   - Application requires bid to be higher than the current price
-
-9. User Profile (2 days) bonus
-
-   - User is able to see items they are in relation with when they are logged in
-   - User is able to view:
-     - items they are watching
-     - items they bid on
-     - items they purchased
-
-10. User Settings (1 day) bonus
-
-- User is able to change their information:
-  - password
-  - location (address) -->
+8.  Search Result Sorting
+    - Search results are displayed in order (top to bottom):
+      - Current user files with most likes
+      - Current user files with least likes
+      - Current user following users' files with most likes
+      - Current user following users' files with least likes
